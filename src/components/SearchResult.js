@@ -9,6 +9,7 @@ export default function SearchResult({ title, description, onClick }) {
     </$>
   )
 }
+
 const $ = styled.div`
   border: 1px solid #eee;
   margin-bottom: 10px;

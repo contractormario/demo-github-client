@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { Tag } from 'antd'
 
 export default function Issue({ number, title, body, labels, state }) {
-  console.log('Issue', labels)
   const labelsJsx = labels.map(label => {
     return <Tag color={`#${label.color}`}>{label.name}</Tag>
   })
+
   return (
     <$>
       <div>issue <Number>#{number}</Number><Title>{title}</Title></div>
@@ -14,6 +14,7 @@ export default function Issue({ number, title, body, labels, state }) {
     </$>
   )
 }
+
 const $ = styled.div`
   border: 1px solid #eee;
   margin-bottom: 10px;

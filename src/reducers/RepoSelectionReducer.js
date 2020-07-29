@@ -1,16 +1,13 @@
-import { SELECT_REPO, SET_SEARCH_TERM, SET_SEARCH_RESULTS, CLEAR_SEARCH } from '../actions'
+import { SELECT_REPO, SET_SEARCH_TERM, SET_SEARCH_RESULTS, CLEAR_SEARCH } from '../const/actions'
 
 const initialState = {
   selectedRepo: null,
   searchResults: [],
   searchResultsCount: 0,
   searchTerm: null,
-  // searchTerm: 'react',
 }
 
 export default function RepoSelectionReducer(state = initialState, action) {
-  console.log('RepoSelectionReducer', state, action)
-
   switch(action.type) {
     case SELECT_REPO: {
       return {
@@ -39,7 +36,7 @@ export default function RepoSelectionReducer(state = initialState, action) {
         searchResultsCount: 0
       }
     }
+    default:
+      return state
   }
-
-  return state
 }

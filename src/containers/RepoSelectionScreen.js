@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
 import { connect } from 'react-redux'
-import { Input, List, Avatar, Spin, Button } from 'antd'
-import { SELECT_REPO, SELECT_SCREEN, SET_SEARCH_TERM, SET_SEARCH_RESULTS, CLEAR_SEARCH } from '../actions'
+import { Input, Spin, Button } from 'antd'
+import { SELECT_REPO, SELECT_SCREEN, SET_SEARCH_TERM, SET_SEARCH_RESULTS, CLEAR_SEARCH } from '../const/actions'
 import { REPO_OVERVIEW_SCREEN } from '../const/screens'
-import GithubApi from '../services/github'
+import GithubApi from '../services/GithubApi'
 import SearchResult from '../components/SearchResult'
 
 const { Search } = Input
@@ -13,34 +13,28 @@ function RepoSelectionScreen({
   selectRepo, selectScreen, searchTerm, searchResults,
   searchResultsCount, setSearchTerm, setSearchResults, clearSearch }) {
   const [searching, setSearching] = useState(false)
-  // const [repos, setRepos] = useState([])
-  // const [reposCount, setReposCount] = useState(0)
 
   const onSearch = useCallback(term => {
-    console.log('onSearch callback', term)
-
     setSearching(true)
 
-    const github = new GithubApi
+    const github = new GithubApi()
 
     github.findRepos(term)
     .then(({ items, total_count }) => {
-      // setRepos(items)
-      // setReposCount(total_count)
       setSearchResults(items, total_count)
 
       setSearching(false)
     })
-  })
+  }, [setSearchResults])
 
   const onSearchTermChange = useCallback(event => {
     const newTerm = event.target.value
     setSearchTerm(newTerm)
-  })
+  }, [setSearchTerm])
 
   const onClearButtonClick = useCallback(event => {
     clearSearch()
-  })
+  }, [clearSearch])
 
   const onRepoClick = repo => {
     selectRepo(repo)

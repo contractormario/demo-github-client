@@ -1,4 +1,4 @@
-import { } from '../actions'
+import { } from '../const/actions'
 
 const initialState = {
   overview: 2

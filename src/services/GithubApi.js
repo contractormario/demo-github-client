@@ -19,15 +19,6 @@ export default class GithubApi {
       console.warn('catch', err)
     }
   }
-  async getRepoData(repoName) {
-    // try {
-    //   const resp = await this._axios.get(`/search/repositories?q=${term}`)
-    //   return resp.data
-    // }
-    // catch(err) {
-    //   console.warn('catch', err)
-    // }
-  }
 
   async getRepoIssues(repoName) {
     try {
@@ -38,6 +29,7 @@ export default class GithubApi {
       console.warn('catch', err)
     }
   }
+
   async getRepoReleases(repoName) {
     try {
       const resp = await this._axios.get(`/repos/${repoName}/releases`)

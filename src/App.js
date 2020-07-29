@@ -1,6 +1,4 @@
-import React, { useCallback, useState } from 'react';
-import logo from './logo.svg';
-// import './App.css';
+import React from 'react';
 import { connect } from 'react-redux'
 import styled from 'styled-components/macro'
 import RepoSelectionScreen from './containers/RepoSelectionScreen'
@@ -12,8 +10,11 @@ import {
 
 function renderScreen(screen) {
   switch(screen) {
-    case REPO_SELECTION_SCREEN: return <RepoSelectionScreen/>
-    case REPO_OVERVIEW_SCREEN: return <RepoOverviewScreen/>
+    case REPO_OVERVIEW_SCREEN:
+      return <RepoOverviewScreen/>
+    case REPO_SELECTION_SCREEN:
+    default:
+      return <RepoSelectionScreen/>
   }
 }
 
@@ -38,19 +39,7 @@ const $ = styled.div`
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
     screen: state.screen,
-    // selectedRepo: state.repoSelection.selectedRepo
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // selectRepo: repo => {
-    //   dispatch({
-    //     type: SELECT_REPO,
-    //     repo
-    //   })
-    // }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, null)(App)

@@ -8,6 +8,7 @@ export default function Release({ name, tag }) {
     </$>
   )
 }
+
 const $ = styled.div`
   border: 1px solid #eee;
   margin-bottom: 10px;

@@ -1,33 +1,27 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 import { connect } from 'react-redux'
-import { Input, Button, Spin } from 'antd'
-import { SELECT_REPO, SELECT_SCREEN } from '../actions'
-import { REPO_SELECTION_SCREEN, REPO_OVERVIEW_SCREEN } from '../const/screens'
-import GithubApi from '../services/github'
+import { Button, Spin } from 'antd'
+import { SELECT_REPO, SELECT_SCREEN } from '../const/actions'
+import { REPO_SELECTION_SCREEN } from '../const/screens'
+import GithubApi from '../services/GithubApi'
 import Issue from '../components/Issue'
 import Release from '../components/Release'
 
-const { Search } = Input
-
 function RepoOverviewScreen({ selectedRepo, selectScreen }) {
-  console.log('RepoOverviewScreen', selectedRepo)
-
   const [loading, setLoading] = useState(true)
   const [issues, setIssues] = useState([])
   const [releases, setReleases] = useState([])
 
   useEffect(() => {
-    const github = new GithubApi
+    const github = new GithubApi()
 
     github.getRepoIssues(selectedRepo)
     .then(issues => {
-      console.log('got issues', issues)
       setIssues(issues)
       return github.getRepoReleases(selectedRepo)
     })
     .then(releases => {
-      console.log('got releases', releases)
       setReleases(releases)
       setLoading(false)
     })
@@ -35,7 +29,7 @@ function RepoOverviewScreen({ selectedRepo, selectScreen }) {
 
   const onGoBackButtonClick = useCallback(() => {
     selectScreen(REPO_SELECTION_SCREEN)
-  })
+  }, [selectScreen])
 
   if(loading) {
     return (
