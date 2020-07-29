@@ -4,7 +4,7 @@ import { Tag } from 'antd'
 
 export default function Issue({ number, title, body, labels, state }) {
   const labelsJsx = labels.map(label => {
-    return <Tag color={`#${label.color}`}>{label.name}</Tag>
+    return <Tag key={label.name} color={`#${label.color}`}>{label.name}</Tag>
   })
 
   return (

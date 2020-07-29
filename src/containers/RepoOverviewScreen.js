@@ -41,12 +41,12 @@ function RepoOverviewScreen({ selectedRepo, selectScreen }) {
 
   const issuesJsx = issues.slice(0, 10).map(issue => {
     const {number, title, body, labels, state} = issue
-    return <Issue number={number} title={title} body={body} labels={labels} state={state} />
+    return <Issue key={number} number={number} title={title} body={body} labels={labels} state={state} />
   })
 
   const releasesJsx = releases.slice(0, 10).map(rel => {
     const {name, tag} = rel
-    return <Release name={name} tag={tag} />
+    return <Release key={name} name={name} tag={tag} />
   })
 
   return (

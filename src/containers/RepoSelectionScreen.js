@@ -52,7 +52,7 @@ function RepoSelectionScreen({
   const searchResultsJsx = searchResults.map(repo => {
     const title = repo.full_name
     const description = repo.description
-    return <SearchResult title={title} description={description} onClick={() => onRepoClick(title)} />
+    return <SearchResult key={title} title={title} description={description} onClick={() => onRepoClick(title)} />
   })
 
   return (
